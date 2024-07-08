@@ -1,0 +1,12 @@
+# Changes here will be overwritten by Copier; NEVER EDIT MANUALLY
+_commit: 2024.04.23
+_src_path: gh:scientific-python/cookie
+backend: skbuild
+email: jean.elsner@tum.de
+full_name: Jean Elsner
+license: Apache
+org: tum-robotics
+project_name: garmi-head
+project_short_description: Python control module for the GARMI robot head.
+url: https://github.com/tum-robotics/garmi-head
+vcs: true
