@@ -9,14 +9,14 @@ find_package(ethercat_interface REQUIRED)
 find_package(${HARDWARE_NAME}_driver REQUIRED)
 find_package(Threads REQUIRED)
 
-pybind11_add_module(_core MODULE src/main.cpp)
+pybind11_add_module(control MODULE src/control.cpp)
 
-target_link_libraries(_core PUBLIC
+target_link_libraries(control PUBLIC
     ${HARDWARE_NAME}_driver::${HARDWARE_NAME}_driver Threads::Threads
 )
 
-target_include_directories(_core SYSTEM PUBLIC
+target_include_directories(control SYSTEM PUBLIC
     include
 )
 
-install(TARGETS _core DESTINATION ${SKBUILD_PROJECT_NAME})
+install(TARGETS control DESTINATION ${SKBUILD_PROJECT_NAME})

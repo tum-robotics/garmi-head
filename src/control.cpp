@@ -1,11 +1,19 @@
 #include <pybind11/pybind11.h>
 #include "control.h"
 
-int add(int i, int j) { return i + j; }
-
 namespace py = pybind11;
 
-PYBIND11_MODULE(_core, m) {
+PYBIND11_MODULE(control, m) {
+
+  m.doc() = R"pbdoc(
+      Pybind11 example plugin
+      -----------------------
+      .. currentmodule:: python_example
+      .. autosummary::
+         :toctree: _generate
+         add
+         subtract
+  )pbdoc";
 
   py::class_<head_control::HeadControlNode>(m, "Control")
       .def(py::init<const double, const double, const double>(),
@@ -20,6 +28,13 @@ PYBIND11_MODULE(_core, m) {
            position.push_back(self.s_.get_theta(0));
            position.push_back(self.s_.get_theta(1));
            return position;
+      }, py::call_guard<py::gil_scoped_release>())
+      .def("get_velocity", [](head_control::HeadControlNode &self) {
+           // Lambda function to get both theta values
+           std::vector<double> velocity;
+           velocity.push_back(self.s_.get_dtheta(0));
+           velocity.push_back(self.s_.get_dtheta(1));
+           return velocity;
       }, py::call_guard<py::gil_scoped_release>());
     //   .def("get_duration", &motion::JointTrajectory::getDuration)
     //   .def("get_joint_positions", &motion::JointTrajectory::getJointPositions,
@@ -31,24 +46,4 @@ PYBIND11_MODULE(_core, m) {
     //   .def("get_joint_accelerations",
     //        &motion::JointTrajectory::getJointAccelerations, py::arg("time"),
     //        py::arg("q") = kinematics::kQDefault, py::arg("q7") = M_PI_4);
-
-  m.doc() = R"pbdoc(
-      Pybind11 example plugin
-      -----------------------
-      .. currentmodule:: python_example
-      .. autosummary::
-         :toctree: _generate
-         add
-         subtract
-  )pbdoc";
-
-  m.def("add", &add, R"pbdoc(
-      Add two numbers
-      Some other explanation about the add function.
-  )pbdoc");
-
-  m.def("subtract", [](int i, int j) { return i - j; }, R"pbdoc(
-      Subtract two numbers
-      Some other explanation about the subtract function.
-  )pbdoc");
 }
