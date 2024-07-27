@@ -1,4 +1,4 @@
-**Work in progrss**
+**Work in progress**
 
 # garmi-head
 
