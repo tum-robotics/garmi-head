@@ -24,7 +24,7 @@ jobs:
       - name: Install Driver
         run: |
           wget ${{ secrets.TUM_HEAD }}
-          dpkg -i tum_head-2.1.0-Linux.deb
+          sudo dpkg -i tum_head-2.1.0-Linux.deb
 
   pre-commit:
     name: Format
