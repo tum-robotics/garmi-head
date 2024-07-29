@@ -22,7 +22,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Install Driver
-        run: >-
+        run: |
           wget ${{ secrets.TUM_HEAD }}
           dpkg -i tum_head-2.1.0-Linux.deb
 
