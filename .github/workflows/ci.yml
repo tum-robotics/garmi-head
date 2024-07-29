@@ -60,7 +60,10 @@ jobs:
           allow-prereleases: true
 
       - name: Install package
-        run: python -m pip install .[test]
+        run: >-
+          wget ${{ secrets.TUM_HEAD }}
+          dpkg -i tum_head-2.1.0-Linux.deb
+          python -m pip install .[test]
 
       - name: Test package
         run: >-
