@@ -17,20 +17,14 @@ env:
   FORCE_COLOR: 3
 
 jobs:
-  requirements:
-    name: Install Requirements
+  pre-commit:
+    name: Format
     runs-on: ubuntu-latest
     steps:
       - name: Install Driver
         run: |
           wget ${{ secrets.TUM_HEAD }}
           sudo dpkg -i tum_head-2.1.0-Linux.deb
-
-  pre-commit:
-    name: Format
-    runs-on: ubuntu-latest
-    needs: [requirements]
-    steps:
       - uses: actions/checkout@v4
         with:
           fetch-depth: 0
@@ -60,6 +54,10 @@ jobs:
             runs-on: ubuntu-latest
 
     steps:
+      - name: Install Driver
+        run: |
+          wget ${{ secrets.TUM_HEAD }}
+          sudo dpkg -i tum_head-2.1.0-Linux.deb
       - uses: actions/checkout@v4
         with:
           fetch-depth: 0
