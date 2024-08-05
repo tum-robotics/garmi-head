@@ -29,9 +29,8 @@ sudo groupadd ethercat
 sudo usermod -aG ethercat "$(id -un)"
 
 echo "Updating ethercat.conf..."
-sudo sed -i "s/\(MASTER0_DEVICE=\).*/\1\"$master0_device\"/" "/etc/ethercat.conf"
-sudo sed -i "s/\(DEVICE_MODULES=\).*/\1\"$device_modules\"/" "/etc/ethercat.conf"
-sudo cp /etc/ethercat.conf /usr/local/etc/ethercat.conf
+sudo sed -i "s/\(MASTER0_DEVICE=\).*/\1\"$master0_device\"/" "/usr/local/etc/ethercat.conf"
+sudo sed -i "s/\(DEVICE_MODULES=\).*/\1\"$device_modules\"/" "/usr/local/etc/ethercat.conf"
 
 limits_path="/etc/security/limits.conf"
 limits="
