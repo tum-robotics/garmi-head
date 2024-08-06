@@ -1,4 +1,7 @@
+from __future__ import annotations
+
 import time
+
 import garmi_head
 
 ctrl = garmi_head.Control()
