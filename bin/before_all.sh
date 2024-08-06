@@ -1,7 +1,7 @@
 #!/bin/bash
 
 yum install -y wget
-wget $TUM_HEAD
+wget "$TUM_HEAD"
 yum localinstall -y tum_head-2.1.0-2.x86_64.rpm
 
 yum install -y kernel-devel
