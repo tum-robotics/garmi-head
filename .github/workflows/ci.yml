@@ -51,14 +51,15 @@ jobs:
         runs-on: [ubuntu-latest]
 
     steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
       - name: Install Driver
         run: |
           wget ${{ secrets.TUM_HEAD }}
           sudo dpkg -i tum_head-2.1.0-Linux.deb
           ./bin/install_ethercat.sh "00:00:00:00:00:00" "generic"
-      - uses: actions/checkout@v4
-        with:
-          fetch-depth: 0
 
       - uses: actions/setup-python@v5
         with:
