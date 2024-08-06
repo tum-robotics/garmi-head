@@ -72,6 +72,9 @@ test-command = "pytest {project}/tests"
 test-extras = ["test"]
 test-skip = ["*universal2:arm64"]
 
+[tool.cibuildwheel.linux]
+before-all = [ "wget $TUM_HEAD", "sudo dpkg -i tum_head-2.1.0-Linux.deb", "./bin/install_ethercat.sh 00:00:00:00:00:00 generic",]
+archs = [ "x86_64",]
 
 [tool.pytest.ini_options]
 minversion = "6.0"
