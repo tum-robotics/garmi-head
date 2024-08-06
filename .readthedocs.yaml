@@ -7,13 +7,6 @@ build:
   os: ubuntu-22.04
   tools:
     python: "3.11"
-  jobs:
-    pre_system_dependencies:
-      - echo "Command run at 'pre_create_environment' step"
-      - wget $TUM_HEAD
-      - dpkg -i tum_head-2.1.0-Linux.deb
-      - ./bin/install_ethercat.sh 00:00:00:00:00:00 generic
-
 sphinx:
   configuration: docs/conf.py
 
