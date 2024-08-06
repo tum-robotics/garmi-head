@@ -1,5 +1,7 @@
 #!/bin/bash
 
+echo "testing"
+
 # Check if the correct number of arguments are passed
 if [ "$#" -ne 2 ]; then
     echo "Usage: $0 <master0_device> <device_modules>"
