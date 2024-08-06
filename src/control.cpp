@@ -4,7 +4,9 @@
 namespace py = pybind11;
 
 PYBIND11_MODULE(control, m) {
-  py::class_<head_control::HeadControlNode>(m, "Control")
+  py::class_<head_control::HeadControlNode>(m, "Control", R"delim(
+      Initializes a control loop with the GARMI head.
+  )delim")
       .def(py::init<const double, const double, const double>(),
            py::arg("k_p") = 800.0, py::arg("k_d") = 50.0,
            py::arg("pt1_filter") = 0.001)
