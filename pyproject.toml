@@ -68,7 +68,7 @@ write_to = "src/garmi_head/_version.py"
 
 
 [tool.cibuildwheel]
-manylinux-x86_64-image = "manylinux_2014"
+manylinux-x86_64-image = "manylinux2014"
 build = [ "cp37-*", "cp38-*", "cp39-*", "cp310-*", "cp311-*", "cp312-*",]
 skip = [ "pp*", "*musllinux*",]
 test-command = "pytest {project}/tests"
