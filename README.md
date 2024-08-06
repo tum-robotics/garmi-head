@@ -9,6 +9,8 @@
 
 [![GitHub Discussion][github-discussions-badge]][github-discussions-link]-->
 
+Python control module for the GARMI robot head.
+
 ## Install
 
 This module is unfortunately not portable and as such needs to be build from
