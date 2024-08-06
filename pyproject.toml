@@ -76,7 +76,7 @@ test-extras = ["test"]
 test-skip = ["*universal2:arm64"]
 
 [tool.cibuildwheel.linux]
-before-all = [ "git clone https://gitlab.com/etherlab.org/ethercat.git", "./bin/install_ethercat_centos.sh",]
+before-all = [ "yum install -y wget", "wget $TUM_HEAD", "yum localinstall tum_head-2.1.0-2.x86_64.rpm", "./bin/install_ethercat_centos.sh",]
 archs = [ "x86_64",]
 
 [tool.pytest.ini_options]
