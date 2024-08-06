@@ -1,14 +1,17 @@
 #!/bin/bash
 
 # Check if the correct number of arguments are passed
-if [ "$#" -ne 2 ]; then
-    echo "Usage: $0 <master0_device> <device_modules>"
+if [ "$#" -eq 0 ] || [ "$#" -gt 2 ]; then
+    echo "Usage: $0 <master0_device> [device_modules]"
     exit 1
 fi
 
 # Assign command-line arguments to variables
 master0_device="$1"
-device_modules="$2"
+device_modules="${2:-generic}"
+
+echo "Master0 Device: $master0_device"
+echo "Device Modules: $device_modules"
 
 sudo apt-get install -y git cmake build-essential autoconf libtool kmod
 
