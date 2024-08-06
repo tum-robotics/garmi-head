@@ -4,17 +4,6 @@
 namespace py = pybind11;
 
 PYBIND11_MODULE(control, m) {
-
-  m.doc() = R"pbdoc(
-      Pybind11 example plugin
-      -----------------------
-      .. currentmodule:: python_example
-      .. autosummary::
-         :toctree: _generate
-         add
-         subtract
-  )pbdoc";
-
   py::class_<head_control::HeadControlNode>(m, "Control")
       .def(py::init<const double, const double, const double>(),
            py::arg("k_p") = 800.0, py::arg("k_d") = 50.0,
@@ -43,15 +32,4 @@ PYBIND11_MODULE(control, m) {
             return velocity;
           },
           py::call_guard<py::gil_scoped_release>());
-  //   .def("get_duration", &motion::JointTrajectory::getDuration)
-  //   .def("get_joint_positions", &motion::JointTrajectory::getJointPositions,
-  //        py::arg("time"), py::arg("q") = kinematics::kQDefault,
-  //        py::arg("q7") = M_PI_4)
-  //   .def("get_joint_velocities",
-  //   &motion::JointTrajectory::getJointVelocities,
-  //        py::arg("time"), py::arg("q") = kinematics::kQDefault,
-  //        py::arg("q7") = M_PI_4)
-  //   .def("get_joint_accelerations",
-  //        &motion::JointTrajectory::getJointAccelerations, py::arg("time"),
-  //        py::arg("q") = kinematics::kQDefault, py::arg("q7") = M_PI_4);
 }
