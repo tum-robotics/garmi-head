@@ -53,7 +53,7 @@ jobs:
       - name: Build wheels
         run: python -m cibuildwheel --output-dir wheelhouse
         env:
-          TUM_HEAD: ${{ secrets.TUM_HEAD_RPM }}
+          CIBW_ENVIRONMENT: TUM_HEAD=${{ secrets.TUM_HEAD_RPM }}
 
       - name: Upload wheels
         uses: actions/upload-artifact@v4
