@@ -68,12 +68,15 @@ write_to = "src/garmi_head/_version.py"
 
 
 [tool.cibuildwheel]
+manylinux-x86_64-image = "manylinux2014"
+build = [ "cp37-*", "cp38-*", "cp39-*", "cp310-*", "cp311-*", "cp312-*",]
+skip = [ "pp*", "*musllinux*",]
 test-command = "pytest {project}/tests"
 test-extras = ["test"]
 test-skip = ["*universal2:arm64"]
 
 [tool.cibuildwheel.linux]
-before-all = [ "wget $TUM_HEAD", "sudo dpkg -i tum_head-2.1.0-Linux.deb", "./bin/install_ethercat.sh 00:00:00:00:00:00 generic",]
+before-all = [ "yum install -y wget", "wget $TUM_HEAD", "yum localinstall tum_head-2.1.0-2.x86_64.rpm", "./bin/install_ethercat.sh 00:00:00:00:00:00 generic",]
 archs = [ "x86_64",]
 
 [tool.pytest.ini_options]
