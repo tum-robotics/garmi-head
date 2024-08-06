@@ -1,25 +1,42 @@
 #!/bin/bash
 
-echo "testing"
+# git clone https://gitlab.freedesktop.org/pkg-config/pkg-config
+# cd pkg-config || return
+# git checkout pkg-config-0.29.2
+# ./autogen.sh
+# make
+# make install
+# cd .. || return
 
-# Check if the correct number of arguments are passed
-if [ "$#" -ne 2 ]; then
-    echo "Usage: $0 <master0_device> <device_modules>"
-    exit 1
-fi
-
-# Assign command-line arguments to variables
-master0_device="$1"
-device_modules="$2"
-
+find /usr -name "pkg.m4"
+aclocal --print-ac-dir
+export ACLOCAL_PATH=/usr/share/aclocal
 git clone https://gitlab.com/etherlab.org/ethercat.git
 cd ethercat || return
 git checkout stable-1.5
-
 chmod +x bootstrap
 ./bootstrap
 ./configure --disable-8139too --with-linux-dir=/usr/src/linux-headers-"$(uname -r)"
 make modules
+
+# # Check if the correct number of arguments are passed
+# if [ "$#" -ne 2 ]; then
+#     echo "Usage: $0 <master0_device> <device_modules>"
+#     exit 1
+# fi
+
+# # Assign command-line arguments to variables
+# master0_device="$1"
+# device_modules="$2"
+
+# git clone https://gitlab.com/etherlab.org/ethercat.git
+# cd ethercat || return
+# git checkout stable-1.5
+
+# chmod +x bootstrap
+# ./bootstrap
+# ./configure --disable-8139too --with-linux-dir=/usr/src/linux-headers-"$(uname -r)"
+# make modules
 
 # sudo make modules_install install
 # sudo depmod
